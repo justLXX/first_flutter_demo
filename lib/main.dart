@@ -1,18 +1,31 @@
-
+import 'package:first_flutter_demo/page/page.dart';
+import 'package:first_flutter_demo/widget/tag_widget.dart';
+import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'animate/ImplicitlyAnimated/FirstAnimate.dart';
-import 'animate/ImplicitlyAnimated/FiveAnimation.dart';
-import 'animate/ImplicitlyAnimated/FourthTweenAnimation.dart';
-import 'animate/ImplicitlyAnimated/SecondAnite.dart';
-import 'animate/ImplicitlyAnimated/ThirdAnimation.dart';
-import 'animate/transation/FirstTransation.dart';
-
 void main() {
-  runApp(MyApp());
-  // var foo = Foo(5);
-  // foo.foo(null);
+  runApp(createApp());
+}
+
+Widget createApp() {
+  ///定义路由
+  final AbstractRoutes routes = PageRoutes(
+    pages: {
+      "FirstPage": FirstPage(),
+    },
+  );
+
+  return MaterialApp(
+    title: 'FishRedux',
+    home: routes.buildPage("FirstPage", null), //作为默认页面
+    onGenerateRoute: (RouteSettings settings) {
+      //ios页面切换风格
+      return CupertinoPageRoute(builder: (BuildContext context) {
+        return routes.buildPage(settings.name, settings.arguments);
+      });
+    },
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,36 +42,44 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       // home: FirstAnimatePage(),
-      home: FirstTransition(),
+      // home: FirstTransition(),
+      // home: Transition478(),
+      // home: CustomPaintTransition(),
+      home: HomePage(),
     );
   }
 }
 
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
 
-class Foo {
-  String name;
-
-  final int age;
-
-  // Foo(this.name);
-
-  Foo(this.age) {
-    this.name = age.toString();
-  }
-
-  void foo(Bar bar) {
-    print("I'm Foo name = $name  age = $age");
-    var bar = Bar(this);
-    bar.printBar();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('FirstFlutter'),
+      ),
+      body: Container(
+        width: 300,
+        height: 400,
+        color: Colors.purple,
+        child: getBody(),
+      ),
+      // body: ArcWidget(height: 140,),
+      // body: WaveWidget(),
+      // body: Layout2(),
+    );
   }
 }
 
-class Bar {
-  final Foo foo;
-
-  Bar(this.foo);
-
-  void printBar() {
-    print("I am Bar  my  foo = $foo");
-  }
+Widget getBody() {
+  return Align(
+    alignment: Alignment.center,
+    child: SimpleTagWidget(
+      "我是 tag",
+      padding: EdgeInsets.all(10),
+      borderColor: Colors.red,
+      borderRadius: 40,
+    ),
+  );
 }

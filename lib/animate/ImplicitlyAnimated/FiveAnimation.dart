@@ -30,7 +30,6 @@ class _AnimatedState extends State<FiveAnimation> {
               final whole = value ~/ 1;
               final decimal = value - whole;
               print("$whole   ---  $decimal");
-
               return Stack(
                 children: <Widget>[
                   Positioned(

@@ -1,26 +1,30 @@
+import 'dart:math';
+
+import 'package:first_flutter_demo/animate/widget/WaveWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///tweenAnimtion
-class FirstTransition extends StatefulWidget {
-  final String title = "Second";
+class CustomPaintTransition extends StatefulWidget {
+  final String title = "CustomPaint";
 
-  const FirstTransition({Key key}) : super(key: key);
+  const CustomPaintTransition({Key key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
 }
 
-class _AnimatedState extends State<FirstTransition>
+class _AnimatedState extends State<CustomPaintTransition>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     _controller = AnimationController(
-            duration: Duration(seconds: 1),
-            vsync: this,
-        );
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+    _controller.repeat(reverse: true);
     super.initState();
   }
 
@@ -31,17 +35,20 @@ class _AnimatedState extends State<FirstTransition>
         title: Text(widget.title),
       ),
       body: Center(
-        child: RotationTransition(
-          turns: _controller,
-          child: Container(
-            width: 300,
-            height: 300,
-            color: Colors.blue,
+        child: Container(
+          width: double.infinity,
+          color: Colors.blue,
+          height: 400,
+          child: Row(
+            children: [
+              WaveWidget(offset: 0, height: 200),
+              WaveWidget(offset: pi, height: 200),
+            ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           print("press");
           _controller.stop();
         },
@@ -55,5 +62,4 @@ class _AnimatedState extends State<FirstTransition>
     _controller.dispose();
     super.dispose();
   }
-
 }
