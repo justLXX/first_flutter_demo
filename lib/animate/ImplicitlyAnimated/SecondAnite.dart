@@ -12,6 +12,8 @@ class SecondAnimated extends StatefulWidget {
 }
 
 class _SecondAnimatedState extends State<SecondAnimated> {
+  bool _loading = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +29,22 @@ class _SecondAnimatedState extends State<SecondAnimated> {
           // child: Center(child: CircularProgressIndicator()),
           child: AnimatedSwitcher(
             duration: Duration(seconds: 2),
-            child: Center(child: CircularProgressIndicator()),
-            // child: Image.network(
-            //     'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F004%2F531%2F381%2F4339f96900344574a0c8ca272a7b8f27.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626188476&t=ff7ad0bcd456a19456d0f7010a3f7063'),
+            child: _loading
+                ? Center(child: CircularProgressIndicator())
+                : Image.network(
+                    'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F004%2F531%2F381%2F4339f96900344574a0c8ca272a7b8f27.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626188476&t=ff7ad0bcd456a19456d0f7010a3f7063'),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onPress(),
+        onPressed: () {
+          setState(() {
+            _loading = !_loading;
+            print('loading = $_loading');
+          });
+        },
         child: Icon(Icons.add_to_queue),
       ),
     );
   }
-
-  _onPress() {}
 }

@@ -1,31 +1,12 @@
-import 'package:first_flutter_demo/page/page.dart';
-import 'package:first_flutter_demo/widget/tag_widget.dart';
-import 'package:fish_redux/fish_redux.dart';
+import 'package:first_flutter_demo/const.dart';
+import 'package:first_flutter_demo/widget/scale_gide_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(createApp());
-}
-
-Widget createApp() {
-  ///定义路由
-  final AbstractRoutes routes = PageRoutes(
-    pages: {
-      "FirstPage": FirstPage(),
-    },
-  );
-
-  return MaterialApp(
-    title: 'FishRedux',
-    home: routes.buildPage("FirstPage", null), //作为默认页面
-    onGenerateRoute: (RouteSettings settings) {
-      //ios页面切换风格
-      return CupertinoPageRoute(builder: (BuildContext context) {
-        return routes.buildPage(settings.name, settings.arguments);
-      });
-    },
-  );
+  runApp(MyApp());
+  // DartTest().testFuture();
+  print('main 结束');
 }
 
 class MyApp extends StatelessWidget {
@@ -39,12 +20,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.green,
       ),
-      // home: FirstAnimatePage(),
-      // home: FirstTransition(),
-      // home: Transition478(),
-      // home: CustomPaintTransition(),
+
+      //注册路由表
+      routes: {}..addAll(groupRoutes)..addAll(animateRoutes),
+
       home: HomePage(),
     );
   }
@@ -59,27 +40,34 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('FirstFlutter'),
       ),
-      body: Container(
-        width: 300,
-        height: 400,
-        color: Colors.purple,
-        child: getBody(),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: groupRoutes.entries
+              .map((entry) => InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, entry.key);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      color: Colors.green,
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(10),
+                      child: Center(
+                          child: Text(
+                        entry.key,
+                        style: TextStyle(fontSize: 16),
+                      )),
+                    ),
+                  ))
+              .toList(),
+        ),
       ),
-      // body: ArcWidget(height: 140,),
-      // body: WaveWidget(),
-      // body: Layout2(),
     );
   }
 }
 
 Widget getBody() {
-  return Align(
-    alignment: Alignment.center,
-    child: SimpleTagWidget(
-      "我是 tag",
-      padding: EdgeInsets.all(10),
-      borderColor: Colors.red,
-      borderRadius: 40,
-    ),
-  );
+  return ScaleWidget();
 }

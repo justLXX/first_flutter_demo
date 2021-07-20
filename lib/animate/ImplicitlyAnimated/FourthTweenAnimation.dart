@@ -13,6 +13,11 @@ class FourthTweenAnimation extends StatefulWidget {
 
 class _AnimatedState extends State<FourthTweenAnimation> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -13,12 +13,14 @@ class FirstAnimatePage extends StatefulWidget {
 class _FirstPageState extends State<FirstAnimatePage> {
   int _counter = 0;
 
-  double _height = 300;
+  double _basic = 0.1;
 
   void _incrementCounter() {
     setState(() {
-      _height += 100;
-      if (_height > 600) _height = 100;
+      _basic += 0.1;
+      if (_basic > 1) {
+        _basic = 0;
+      }
     });
   }
 
@@ -46,17 +48,14 @@ class _FirstPageState extends State<FirstAnimatePage> {
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [Colors.red, Colors.white],
-                  stops: [0.4,0.6]
-              ),
+                  stops: [_basic, _basic + 0.2]),
               boxShadow: [
                 BoxShadow(
                   spreadRadius: 25,
                   blurRadius: 25,
                 )
               ],
-              borderRadius: BorderRadius.circular(150)
-
-          ),
+              borderRadius: BorderRadius.circular(200)),
           child: Center(
             child: Text(
               'Hi',
