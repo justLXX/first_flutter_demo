@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///不容控件之间切换动画
+///不同控件之间切换动画
 class SecondAnimated extends StatefulWidget {
   final String title = "Second";
 

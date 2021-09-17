@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 ///tweenAnimtion
 class FirstTransition extends StatefulWidget {
-  final String title = "Second";
+  final String title = "AnimationController";
 
   const FirstTransition({Key key}) : super(key: key);
 
@@ -11,16 +11,15 @@ class FirstTransition extends StatefulWidget {
   _AnimatedState createState() => _AnimatedState();
 }
 
-class _AnimatedState extends State<FirstTransition>
-    with SingleTickerProviderStateMixin {
+class _AnimatedState extends State<FirstTransition> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     _controller = AnimationController(
-            duration: Duration(seconds: 1),
-            vsync: this,
-        );
+      duration: Duration(seconds: 3),
+      vsync: this,
+    );
     super.initState();
   }
 
@@ -31,8 +30,8 @@ class _AnimatedState extends State<FirstTransition>
         title: Text(widget.title),
       ),
       body: Center(
-        child: RotationTransition(
-          turns: _controller,
+        child: ScaleTransition(
+          scale: _controller.drive(Tween(begin: 0.5,end: 1)),
           child: Container(
             width: 300,
             height: 300,
@@ -41,9 +40,13 @@ class _AnimatedState extends State<FirstTransition>
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          print("press");
-          _controller.stop();
+        onPressed: () {
+          print('AnimatingStatus = ${_controller.isAnimating}');
+          if(_controller.isAnimating){
+            _controller.stop();
+          }else{
+            _controller.repeat(reverse: true);
+          }
         },
         child: Icon(Icons.add),
       ),
@@ -55,5 +58,4 @@ class _AnimatedState extends State<FirstTransition>
     _controller.dispose();
     super.dispose();
   }
-
 }

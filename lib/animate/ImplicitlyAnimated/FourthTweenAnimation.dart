@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 ///tweenAnimtion
 class FourthTweenAnimation extends StatefulWidget {
@@ -17,6 +18,8 @@ class _AnimatedState extends State<FourthTweenAnimation> {
     super.initState();
   }
 
+  double end = 1.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +29,7 @@ class _AnimatedState extends State<FourthTweenAnimation> {
       body: Center(
         child: TweenAnimationBuilder(
           duration: Duration(seconds: 1),
-          tween: Tween(begin: 0.00, end: 1.0),
+          tween: Tween(begin: 0.00, end: end),
           builder: (BuildContext context, value, Widget child) {
             return Opacity(
               opacity: value,
@@ -35,24 +38,22 @@ class _AnimatedState extends State<FourthTweenAnimation> {
                 color: Colors.blue,
                 width: 300,
                 height: 300,
-                // child: Center(child: CircularProgressIndicator()),
-                child: AnimatedSwitcher(
-                  duration: Duration(seconds: 2),
-                  // child: Center(child: CircularProgressIndicator()),
-                  // child: Image.network(
-                  //     'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F004%2F531%2F381%2F4339f96900344574a0c8ca272a7b8f27.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626188476&t=ff7ad0bcd456a19456d0f7010a3f7063'),
-                ),
               ),
             );
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onPress(),
-        child: Icon(Icons.add_to_queue),
+        onPressed: (){
+          setState(() {
+            var rng = new Random();
+            end = rng.nextDouble();
+            print('end = $end');
+          });
+        },
+        child: Icon(Icons.refresh),
       ),
     );
   }
 
-  _onPress() {}
 }

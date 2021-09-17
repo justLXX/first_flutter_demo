@@ -3,9 +3,11 @@ import 'package:first_flutter_demo/widget/scale_gide_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'dart_grammar_test.dart';
+
 void main() {
-  runApp(MyApp());
-  // DartTest().testFuture();
+  DartTest().testFuture();
+  // runApp();
   print('main 结束');
 }
 
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
 
       //注册路由表
-      routes: {}..addAll(groupRoutes)..addAll(animateRoutes),
+      routes: {}..addAll(groupRoutes)..addAll(animateRoutes)..addAll(customWidgetRoutes),
 
       home: HomePage(),
     );
@@ -48,6 +50,7 @@ class HomePage extends StatelessWidget {
               .map((entry) => InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, entry.key);
+                      // DartTest().testFuture();
                     },
                     child: Container(
                       width: double.infinity,

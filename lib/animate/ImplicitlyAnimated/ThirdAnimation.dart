@@ -25,7 +25,7 @@ class _AnimatedState extends State<ThirdAnimation> {
       body: Align(
         alignment: Alignment.topCenter,
         child: AnimatedContainer(
-          // curve: Curves.bounceOut,
+          curve: Curves.bounceOut,
           margin: EdgeInsets.only(top: _paddingTop),
           duration: Duration(milliseconds: 300),
           color: Colors.blue,

@@ -40,7 +40,7 @@ class _FirstPageState extends State<FirstAnimatePage> {
       ),
       body: Center(
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 300),
           width: 300,
           height: 300,
           decoration: BoxDecoration(

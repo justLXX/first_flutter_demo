@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,9 @@ class FiveAnimation extends StatefulWidget {
 }
 
 class _AnimatedState extends State<FiveAnimation> {
+
+  var end = 6.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,7 @@ class _AnimatedState extends State<FiveAnimation> {
           height: 120,
           child: TweenAnimationBuilder(
             duration: Duration(milliseconds: 400),
-            tween: Tween(begin: 7.0, end: 8.0),
+            tween: Tween(begin: 7.0, end: end),
             builder: (context, value, child) {
               final whole = value ~/ 1;
               final decimal = value - whole;
@@ -59,11 +64,15 @@ class _AnimatedState extends State<FiveAnimation> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _onPress(),
-        child: Icon(Icons.add_to_queue),
+        onPressed: (){
+          setState(() {
+            var rng = new Random();
+            end = rng.nextInt(10).toDouble();
+            print('end = $end');
+          });
+        },
+        child: Icon(Icons.refresh),
       ),
     );
   }
-
-  _onPress() {}
 }

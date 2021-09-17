@@ -1,23 +1,40 @@
 class DartTest {
-  void testFuture() async {
-    for (int index = 0; index < 4; index++) {
-      print('index = $index');
-      // var value = await getFuture(index)
-      //     .catchError((msg) => print('catchError  msg = $msg'));
-      // print('value = $value ');
+  Future<String> testFuture() async {
+    var list = [1, 2, 3, 4];
 
-      getFuture(index)
-          .then((value) => print('value = $value'))
-          .catchError((msg) => print('catchError  msg = $msg'));
+    Future.forEach(
+        list,
+        (element) => Future.delayed(Duration(seconds: 1), () {
+              print('${currentTimeMillis()}  element = $element');
+            }));
 
-      // try {
-      //   var value = await getFuture(index);
-      //   print('value = $value');
-      // } catch (e) {
-      //   print('catch  e = $e');
-      // }
+    Future.delayed(Duration(seconds: 2), () {
+      print('delay');
+    });
+    //
+    // list.forEach((element) async {
+    //   print('我是delay 之前 $element');
+    //   await Future.delayed(Duration(seconds: 1));
+    //   print('我是delay 之后 $element');
+    // });
+  }
+
+  Future<String> getFutrue1() async {
+    String msg = 'defaultMsg';
+
+    var resutl0 = await getFuture(0);
+
+    msg = resutl0;
+
+    print('result0 = $resutl0');
+
+    String result1 = await getFuture(1);
+
+    if (msg == resutl0) {
+      if (result1.isEmpty) msg = result1;
     }
-    print('testFuture   结束');
+
+    return Future.value(msg);
   }
 
   Future<String> getFuture(int index) {
@@ -25,6 +42,19 @@ class DartTest {
       return Future.delayed(Duration(milliseconds: 200), () => "$index");
     }
     // return Future.delayed(Duration(milliseconds: 200), () => "$index");
-    throw 'index 不满足条件';
+    Future.delayed(Duration(milliseconds: 200), () {
+      throw 'index 不满足条件';
+      return "error $index";
+    });
   }
+
+  Future<String> getFutureStr() async {
+    return Future.value('dafda');
+  }
+}
+
+void forEach(void action(int element)) {}
+
+int currentTimeMillis() {
+  return new DateTime.now().millisecondsSinceEpoch;
 }

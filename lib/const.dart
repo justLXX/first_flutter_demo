@@ -4,11 +4,14 @@ import 'package:first_flutter_demo/animate/ImplicitlyAnimated/SecondAnite.dart';
 import 'package:first_flutter_demo/animate/ImplicitlyAnimated/ThirdAnimation.dart';
 import 'package:first_flutter_demo/animate/animate_home.dart';
 import 'package:first_flutter_demo/animate/transition/FirstTransition.dart';
+import 'package:first_flutter_demo/widget/custom_widget_home.dart';
+import 'package:first_flutter_demo/widget/tiny_tag_view.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'animate/ImplicitlyAnimated/FirstAnimate.dart';
 import 'animate/transition/CustomPaintTransition.dart';
 import 'animate/transition/Transition478.dart';
+import 'layout/Dragable_list.dart';
 
 class AnimateRouter {
   static const FIRST_ANIMATE_ROUTER = 'first_Animate_router';
@@ -23,7 +26,13 @@ class AnimateRouter {
 
 class Group {
   static const ANIMATED_LIST = 'animated_list';
+  static const Custom_Widget = 'Custom_Widget';
 }
+
+Map<String, WidgetBuilder> groupRoutes = {
+  Group.ANIMATED_LIST: (context) => AnimatedDemo(),
+  Group.Custom_Widget: (context) => CustomWidgetDemo(),
+};
 
 ///动画路由
 Map<String, WidgetBuilder> animateRoutes = {
@@ -38,6 +47,11 @@ Map<String, WidgetBuilder> animateRoutes = {
   AnimateRouter.TRANSITION_478_ROUTER: (context) => Transition478(),
 };
 
-Map<String, WidgetBuilder> groupRoutes = {
-  Group.ANIMATED_LIST: (context) => AnimatedDemo(),
+
+
+
+///自定义 Widget路由
+Map<String, WidgetBuilder> customWidgetRoutes = {
+  'tiny_tag_view': (context) => TinyTagPage(),
+  'DraggableList': (context) => DraggableList(),
 };

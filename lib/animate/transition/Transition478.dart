@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 ///tweenAnimtion
 class Transition478 extends StatefulWidget {
-  final String title = "Second";
+  final String title = "tweenAnimtion";
 
   const Transition478({Key key}) : super(key: key);
 

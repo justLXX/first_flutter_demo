@@ -16,8 +16,14 @@ class _ScaleWidgetState extends State<ScaleWidget> {
   double wid = 300;
 
   double scale = 1;
+
   @override
   Widget build(BuildContext context) {
+    bool flag = false;
+
+    return Container(
+      child: flag ? Container() : Container(),
+    );
     // return GestureDetector(
     //   onScaleUpdate: (detail) {
     //     setState(() {
