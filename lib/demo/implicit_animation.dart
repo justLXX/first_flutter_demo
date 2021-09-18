@@ -19,7 +19,7 @@ class _ImplicitAnimationState extends State<ImplicitAnimation> {
       ),
       body: LayoutBuilder(builder: (context, constrains) {
         return AnimatedPadding(
-          // curve: Curves.bounceIn,
+          curve: Curves.bounceIn,
           padding: EdgeInsets.only(top: _padding),
           duration: Duration(seconds: 1),
           child: Container(

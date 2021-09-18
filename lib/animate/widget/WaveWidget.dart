@@ -2,34 +2,34 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class WaveWidget extends StatefulWidget {
-  const WaveWidget({Key key, this.height, this.offset}) : super(key: key);
+class WaveContainer extends StatefulWidget {
+  const WaveContainer({Key key, this.height = 400, this.offset = 0}) : super(key: key);
 
   final double height;
   final double offset;
 
   @override
-  _WaveWidgetState createState() => _WaveWidgetState();
+  _WaveContainerState createState() => _WaveContainerState();
 }
 
-class _WaveWidgetState extends State<WaveWidget>
+class _WaveContainerState extends State<WaveContainer>
     with SingleTickerProviderStateMixin {
-  AnimationController _container;
+  AnimationController _controller;
 
   @override
   void initState() {
-    _container = AnimationController(
+    _controller = AnimationController(
         vsync: this,
         duration: Duration(seconds: 3),
         upperBound: 2 * pi,
         lowerBound: 0);
-    _container.repeat();
+    _controller.repeat();
     super.initState();
   }
 
   @override
   void dispose() {
-    _container.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -38,21 +38,49 @@ class _WaveWidgetState extends State<WaveWidget>
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Container(
+          color: Colors.blue,
           height: widget.height,
-          width: 180,
-          child: AnimatedBuilder(
-            builder: (BuildContext context, Widget child) {
-              return CustomPaint(
-                painter: _WavePainter(_container.value + widget.offset),
-              );
-            },
-            animation: _container,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              WaveWidget(controller: _controller, offset: 0),
+              WaveWidget(controller: _controller, offset: 200.0),
+            ],
           ),
         );
       },
     );
   }
 }
+
+class WaveWidget extends StatelessWidget {
+   WaveWidget({
+    Key key,
+    @required this.controller,
+    @required this.offset,
+  }) :  super(key: key);
+
+  final AnimationController controller;
+  final double offset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 400,
+      child: AnimatedBuilder(
+        builder: (BuildContext context, Widget child) {
+          return CustomPaint(
+            painter: _WavePainter(controller.value + offset),
+          );
+        },
+        animation: controller,
+      ),
+    );
+  }
+}
+
+
 
 class _WavePainter extends CustomPainter {
   final double value;
@@ -61,6 +89,7 @@ class _WavePainter extends CustomPainter {
 
   final white = Paint()
     ..color = Colors.white.withAlpha(60)
+    ..color = Colors.red
     ..style = PaintingStyle.fill
     ..strokeWidth = 10
     ..isAntiAlias = true;
@@ -84,8 +113,8 @@ class _WavePainter extends CustomPainter {
     path.moveTo(size.width * 0, startPointY);
     path.quadraticBezierTo(
         controlX, controlPointY, endPointX, endPointY);
-    // path.quadraticBezierTo(
-    //     size.width * 0.25, controlPointY, endPointX, endPointY);
+    path.quadraticBezierTo(
+        size.width * 0.25, controlPointY, endPointX, endPointY);
     path.lineTo(endPointX, size.height);
     path.lineTo(0, size.height);
     path.close();

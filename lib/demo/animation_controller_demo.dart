@@ -1,6 +1,6 @@
+import 'package:first_flutter_demo/utils/log.dart';
 import 'package:flutter/material.dart';
 
-const double CONTAINER_HEIGHT = 100;
 
 class AnimationControllerDemo extends StatefulWidget {
   const AnimationControllerDemo({Key key}) : super(key: key);
@@ -12,17 +12,20 @@ class AnimationControllerDemo extends StatefulWidget {
 class _AnimationControllerDemoState extends State<AnimationControllerDemo> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
+  int count = 0;
+
   @override
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
-      lowerBound: 3,
-      upperBound: 5,
+      duration: Duration(seconds: 1),
+      lowerBound: 0.0,
+      upperBound: 1.0,
     );
 
     _controller.addListener(() {
-      print('value = ${_controller.value}');
+      count++;
+      printLog('value = ${_controller.value}  count = $count');
     });
     super.initState();
   }
@@ -37,20 +40,20 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CurvesDemo'),
+        title: Text('AnimationControllerDemo'),
       ),
       body: Center(
-        child: Container(
-          width: 300,
-          color: Colors.grey,
-          height: 300,
-        ),
+        // child:ScaleAnimateBox(controller: _controller),
+        child:SlideAnimateBox(controller: _controller),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.refresh),
         onPressed: () {
           setState(() {
-
+            count = 0;
+            _controller.reset();
+            _controller.forward();
+            // _controller.repeat(); //重复
           });
         },
       ),
@@ -58,17 +61,42 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
   }
 }
 
-class Box extends StatelessWidget {
-  final Color color;
+class ScaleAnimateBox extends StatelessWidget {
+  final AnimationController controller;
 
-  const Box({Key key, this.color}) : super(key: key);
+  ScaleAnimateBox({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
-      width: CONTAINER_HEIGHT / 2,
-      height: CONTAINER_HEIGHT,
+    return ScaleTransition(
+      // scale: controller.drive(Tween(begin: 0.5,end:2)),
+      scale: controller,
+      child: Container(
+        width: 300,
+        color: Colors.cyan,
+        height: 300,
+      ),
+    );
+  }
+}
+
+class SlideAnimateBox extends StatelessWidget {
+  final AnimationController controller;
+
+  SlideAnimateBox({Key key, this.controller}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: Tween(begin: Offset.zero, end: Offset(0.0, 1.0))
+          .chain(CurveTween(curve: Curves.elasticInOut))
+          .chain(CurveTween(curve: Interval(0.5, 0.6)))/// 区间 表示在此区间内完成整个动画
+          .animate(controller),
+      child: Container(
+        width: 300,
+        color: Colors.cyan,
+        height: 300,
+      ),
     );
   }
 }

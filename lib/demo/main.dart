@@ -1,6 +1,11 @@
+import 'package:first_flutter_demo/animate/widget/WaveWidget.dart';
+import 'package:first_flutter_demo/demo/snow.dart';
+import 'package:first_flutter_demo/demo/transform_demo.dart';
 import 'package:first_flutter_demo/demo/tween_animation_builder_demo.dart';
 import 'package:flutter/material.dart';
 
+import 'animate_switch.dart';
+import 'animation_controller_demo.dart';
 import 'curves_demo.dart';
 import 'implicit_animation.dart';
 
@@ -23,11 +28,15 @@ Map<String, Widget> routes = {
   'ImplicitAnimation': ImplicitAnimation(),
   'CurvesDemo': CurvesDemo(),
   'TweenAnimationBuilderDemo': TweenAnimationBuilderDemo(),
+  'AnimationControllerDemo': AnimationControllerDemo(),
+  'TransformDemo': TransformDemo(),
 };
 
 /// 仅展示 Widget
 Map<String, Widget> simpleRoutes = {
-  // 'ImplicitAnimation': ImplicitAnimation(),
+  'CustomPaint': WaveContainer(),
+  'SnowAnimateWidget': SnowAnimateWidget(),
+  'AnimatedSwitchDemo': AnimatedSwitchDemo(),
 };
 
 class HomePage extends StatelessWidget {

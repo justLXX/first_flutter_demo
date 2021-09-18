@@ -41,8 +41,8 @@ class _AnimatedState extends State<CustomPaintTransition>
           height: 400,
           child: Row(
             children: [
-              WaveWidget(offset: 0, height: 200),
-              WaveWidget(offset: pi, height: 200),
+              WaveContainer(offset: 0, height: 200),
+              WaveContainer(offset: pi, height: 200),
             ],
           ),
         ),

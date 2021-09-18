@@ -13,7 +13,7 @@ class _TweenAnimationBuilderDemoState extends State<TweenAnimationBuilderDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CurvesDemo'),
+        title: Text('TweenAnimationBuilder'),
       ),
       body: Center(
         child: TweenAnimationBuilder(
