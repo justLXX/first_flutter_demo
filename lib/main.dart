@@ -1,20 +1,19 @@
+
 import 'package:first_flutter_demo/const.dart';
-import 'package:first_flutter_demo/widget/scale_gide_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'dart_grammar_test.dart';
 
 void main() {
-  DartTest().testFuture();
-  // runApp();
+  // DartTest().testFuture();
+  runApp(MyApp());
   print('main 结束');
 }
 
 class MyApp extends StatelessWidget {
-  final String title;
+  final String? title;
 
-  MyApp({Key key, this.title}) : super(key: key) {}
+  MyApp({Key? key, this.title}) : super(key: key) {}
 
   // This widget is the root of your application.
   @override
@@ -33,8 +32,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+
+  late var _controller = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +81,4 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget getBody() {
-  return ScaleWidget();
-}
+

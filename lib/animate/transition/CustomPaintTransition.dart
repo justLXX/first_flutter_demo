@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class CustomPaintTransition extends StatefulWidget {
   final String title = "CustomPaint";
 
-  const CustomPaintTransition({Key key}) : super(key: key);
+  const CustomPaintTransition({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
@@ -16,7 +16,7 @@ class CustomPaintTransition extends StatefulWidget {
 
 class _AnimatedState extends State<CustomPaintTransition>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {

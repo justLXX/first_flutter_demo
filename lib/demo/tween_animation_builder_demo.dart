@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TweenAnimationBuilderDemo extends StatefulWidget {
-  const TweenAnimationBuilderDemo({Key key}) : super(key: key);
+  const TweenAnimationBuilderDemo({Key? key}) : super(key: key);
 
   @override
   _TweenAnimationBuilderDemoState createState() => _TweenAnimationBuilderDemoState();
@@ -18,7 +18,7 @@ class _TweenAnimationBuilderDemoState extends State<TweenAnimationBuilderDemo> {
       body: Center(
         child: TweenAnimationBuilder(
           tween: Tween(begin: 50.0, end: 100.0),
-          builder: (BuildContext context, value, Widget child) {
+          builder: (BuildContext context, dynamic value, Widget? child) {
             return Container(
               color: Colors.blue,
               width: 300,

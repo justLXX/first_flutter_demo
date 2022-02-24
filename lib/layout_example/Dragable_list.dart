@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DraggableList extends StatefulWidget {
   final String title = "Second";
 
-  const DraggableList({Key key}) : super(key: key);
+  const DraggableList({Key? key}) : super(key: key);
 
   @override
   _DraggableState createState() => _DraggableState();
@@ -83,9 +83,9 @@ class _DraggableState extends State<DraggableList> {
 }
 
 class DragBox extends StatelessWidget {
-  final Color color;
+  final Color? color;
 
-  const DragBox({Key key, this.color}) : super(key: key);
+  const DragBox({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

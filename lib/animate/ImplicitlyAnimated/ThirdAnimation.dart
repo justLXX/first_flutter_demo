@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ThirdAnimation extends StatefulWidget {
   final String title = "Second";
 
-  const ThirdAnimation({Key key}) : super(key: key);
+  const ThirdAnimation({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();

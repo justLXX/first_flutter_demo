@@ -11,7 +11,7 @@ class AnimationItem {
 }
 
 class CustomWidgetDemo extends StatelessWidget {
-  const CustomWidgetDemo({Key key}) : super(key: key);
+  const CustomWidgetDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

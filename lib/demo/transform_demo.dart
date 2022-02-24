@@ -6,7 +6,7 @@ import 'curves_demo.dart';
 
 /// https://flutter.dev/docs/development/ui/widgets/layout
 class TransformDemo extends StatefulWidget {
-  const TransformDemo({Key key}) : super(key: key);
+  const TransformDemo({Key? key}) : super(key: key);
 
   @override
   _TransformDemoState createState() => _TransformDemoState();
@@ -34,7 +34,7 @@ class _TransformDemoState extends State<TransformDemo> {
         color: Colors.grey,
         height: double.infinity,
         child: TweenAnimationBuilder(
-            builder: (BuildContext context, double value, Widget child) {
+            builder: (BuildContext context, double value, Widget? child) {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 
 class AnimationControllerDemo extends StatefulWidget {
-  const AnimationControllerDemo({Key key}) : super(key: key);
+  const AnimationControllerDemo({Key? key}) : super(key: key);
 
   @override
   _AnimationControllerDemoState createState() => _AnimationControllerDemoState();
 }
 
 class _AnimationControllerDemoState extends State<AnimationControllerDemo> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
 
   int count = 0;
 
@@ -23,16 +23,16 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
       upperBound: 1.0,
     );
 
-    _controller.addListener(() {
+    _controller!.addListener(() {
       count++;
-      printLog('value = ${_controller.value}  count = $count');
+      printLog('value = ${_controller!.value}  count = $count');
     });
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -51,8 +51,8 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
         onPressed: () {
           setState(() {
             count = 0;
-            _controller.reset();
-            _controller.forward();
+            _controller!.reset();
+            _controller!.forward();
             // _controller.repeat(); //重复
           });
         },
@@ -62,15 +62,15 @@ class _AnimationControllerDemoState extends State<AnimationControllerDemo> with 
 }
 
 class ScaleAnimateBox extends StatelessWidget {
-  final AnimationController controller;
+  final AnimationController? controller;
 
-  ScaleAnimateBox({Key key, this.controller}) : super(key: key);
+  ScaleAnimateBox({Key? key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScaleTransition(
       // scale: controller.drive(Tween(begin: 0.5,end:2)),
-      scale: controller,
+      scale: controller!,
       child: Container(
         width: 300,
         color: Colors.cyan,
@@ -81,9 +81,9 @@ class ScaleAnimateBox extends StatelessWidget {
 }
 
 class SlideAnimateBox extends StatelessWidget {
-  final AnimationController controller;
+  final AnimationController? controller;
 
-  SlideAnimateBox({Key key, this.controller}) : super(key: key);
+  SlideAnimateBox({Key? key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class SlideAnimateBox extends StatelessWidget {
       position: Tween(begin: Offset.zero, end: Offset(0.0, 1.0))
           .chain(CurveTween(curve: Curves.elasticInOut))
           .chain(CurveTween(curve: Interval(0.5, 0.6)))/// 区间 表示在此区间内完成整个动画
-          .animate(controller),
+          .animate(controller!),
       child: Container(
         width: 300,
         color: Colors.cyan,

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class FirstTransition extends StatefulWidget {
   final String title = "AnimationController";
 
-  const FirstTransition({Key key}) : super(key: key);
+  const FirstTransition({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
 }
 
 class _AnimatedState extends State<FirstTransition> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {

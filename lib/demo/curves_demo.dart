@@ -4,7 +4,7 @@ const double CONTAINER_HEIGHT = 100;
 
 /// https://api.flutter.dev/flutter/animation/Curves-class.html
 class CurvesDemo extends StatefulWidget {
-  const CurvesDemo({Key key}) : super(key: key);
+  const CurvesDemo({Key? key}) : super(key: key);
 
   @override
   _CurvesDemoState createState() => _CurvesDemoState();
@@ -95,9 +95,9 @@ class _CurvesDemoState extends State<CurvesDemo> {
 }
 
 class Box extends StatelessWidget {
-  final Color color;
+  final Color? color;
 
-  const Box({Key key, this.color}) : super(key: key);
+  const Box({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

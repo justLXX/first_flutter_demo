@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class FiveAnimation extends StatefulWidget {
   final String title = "Five 翻滚数字";
 
-  const FiveAnimation({Key key}) : super(key: key);
+  const FiveAnimation({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
@@ -31,16 +31,16 @@ class _AnimatedState extends State<FiveAnimation> {
           child: TweenAnimationBuilder(
             duration: Duration(milliseconds: 400),
             tween: Tween(begin: 7.0, end: end),
-            builder: (context, value, child) {
+            builder: (context, dynamic value, child) {
               final whole = value ~/ 1;
               final decimal = value - whole;
               print("$whole   ---  $decimal");
               return Stack(
                 children: <Widget>[
                   Positioned(
-                    top: -100 * decimal, //0 -> -100
+                    top: -100 * decimal as double?, //0 -> -100
                     child: Opacity(
-                      opacity: 1 - decimal, //1.0 -> 0.0
+                      opacity: 1 - decimal as double, //1.0 -> 0.0
                       child: Text(
                         '$whole',
                         style: TextStyle(fontSize: 100),
@@ -48,7 +48,7 @@ class _AnimatedState extends State<FiveAnimation> {
                     ),
                   ),
                   Positioned(
-                    top: 100 - 100 * decimal, //100 -> 0
+                    top: 100 - (100 * decimal as double), //100 -> 0
                     child: Opacity(
                       opacity: decimal, // 0 -> 1
                       child: Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ImplicitAnimation extends StatefulWidget {
-  const ImplicitAnimation({Key key}) : super(key: key);
+  const ImplicitAnimation({Key? key}) : super(key: key);
 
   @override
   _ImplicitAnimationState createState() => _ImplicitAnimationState();

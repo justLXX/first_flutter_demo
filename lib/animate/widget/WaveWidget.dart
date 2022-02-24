@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class WaveContainer extends StatefulWidget {
-  const WaveContainer({Key key, this.height = 400, this.offset = 0}) : super(key: key);
+  const WaveContainer({Key? key, this.height = 400, this.offset = 0}) : super(key: key);
 
   final double height;
   final double offset;
@@ -14,7 +14,7 @@ class WaveContainer extends StatefulWidget {
 
 class _WaveContainerState extends State<WaveContainer>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
 
   @override
   void initState() {
@@ -23,13 +23,13 @@ class _WaveContainerState extends State<WaveContainer>
         duration: Duration(seconds: 3),
         upperBound: 2 * pi,
         lowerBound: 0);
-    _controller.repeat();
+    _controller!.repeat();
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -55,12 +55,12 @@ class _WaveContainerState extends State<WaveContainer>
 
 class WaveWidget extends StatelessWidget {
    WaveWidget({
-    Key key,
-    @required this.controller,
-    @required this.offset,
+    Key? key,
+    required this.controller,
+    required this.offset,
   }) :  super(key: key);
 
-  final AnimationController controller;
+  final AnimationController? controller;
   final double offset;
 
   @override
@@ -69,12 +69,12 @@ class WaveWidget extends StatelessWidget {
       width: double.infinity,
       height: 400,
       child: AnimatedBuilder(
-        builder: (BuildContext context, Widget child) {
+        builder: (BuildContext context, Widget? child) {
           return CustomPaint(
-            painter: _WavePainter(controller.value + offset),
+            painter: _WavePainter(controller!.value + offset),
           );
         },
-        animation: controller,
+        animation: controller!,
       ),
     );
   }

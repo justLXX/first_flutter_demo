@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 /// 弧形背景
 class ArcWidget extends StatelessWidget {
-  final double height;
+  final double? height;
 
-  const ArcWidget({Key key, this.height}) : super(key: key);
+  const ArcWidget({Key? key, this.height}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ArcWidget extends StatelessWidget {
 class _DrawArc extends StatelessWidget {
   final color;
 
-  const _DrawArc({Key key, this.color}) : super(key: key);
+  const _DrawArc({Key? key, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _DrawArc extends StatelessWidget {
 }
 
 class _DrawArcPainter extends CustomPainter {
-  final Color color;
+  final Color? color;
 
   _DrawArcPainter(this.color);
 
@@ -53,13 +53,13 @@ class _DrawArcPainter extends CustomPainter {
         width: size.width,
         height: size.height);
 
-    final gradient = LinearGradient(colors: [Colors.green[200],Colors.green]);
+    final gradient = LinearGradient(colors: [Colors.green[200]!,Colors.green]);
 
     var paint = Paint()
       ..isAntiAlias = true
       ..style = PaintingStyle.fill
       ..shader = gradient.createShader(rect)
-      ..color = color
+      ..color = color!
     ;
 
     var path = Path();
@@ -84,7 +84,7 @@ class _DrawArcPainter extends CustomPainter {
 }
 
 class _ClipArc extends StatelessWidget {
-  const _ClipArc({Key key}) : super(key: key);
+  const _ClipArc({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

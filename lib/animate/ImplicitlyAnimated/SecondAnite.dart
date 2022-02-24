@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SecondAnimated extends StatefulWidget {
   final String title = "Second";
 
-  const SecondAnimated({Key key}) : super(key: key);
+  const SecondAnimated({Key? key}) : super(key: key);
 
   @override
   _SecondAnimatedState createState() => _SecondAnimatedState();

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class TinyTagPage extends StatelessWidget {
-  TinyTagPage({Key key}) : super(key: key);
+  TinyTagPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class TinyTagPage extends StatelessWidget {
 }
 
 class TinyTagWidget extends SingleChildRenderObjectWidget {
-  const TinyTagWidget({Key key, Widget child}) : super(key: key, child: child);
+  const TinyTagWidget({Key? key, Widget? child}) : super(key: key, child: child);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -103,7 +103,7 @@ class RenderTinyTag extends RenderProxyBox {
     super.performLayout();
     // TextPainter painter = new TextPainter(text: TextSpan(text: '经济人/公寓'));
     // List<LineMetrics> lines = painter.computeLineMetrics();
-    // painter.layout()
+    // painter.layout_example()
   }
 
   void paint(PaintingContext context, Offset offset) {
@@ -123,13 +123,13 @@ class RenderTinyTag extends RenderProxyBox {
 }
 
 class TinyTagWidget1 extends StatelessWidget {
-  final String text;
+  final String? text;
 
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   GlobalKey globalKey = GlobalKey();
 
-  TinyTagWidget1({Key key, this.text, this.textStyle}) : super(key: key);
+  TinyTagWidget1({Key? key, this.text, this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class TinyTagWidget1 extends StatelessWidget {
         print('constraints = $constraints');
         return GestureDetector(
           onTap: () {
-            final graph = (globalKey.currentContext.findRenderObject()
+            final graph = (globalKey.currentContext!.findRenderObject()
                 as RenderParagraph);
 
             print('graph size = ${graph.size}   ');
@@ -182,7 +182,7 @@ class TinyTagWidget1 extends StatelessWidget {
                   width: double.infinity,
                   height: double.infinity,
                   child: Text(
-                    text,
+                    text!,
                     key: globalKey,
                     style: textStyle,
                   ),

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FirstAnimatePage extends StatefulWidget {
-  FirstAnimatePage({Key key}) : super(key: key);
+  FirstAnimatePage({Key? key}) : super(key: key);
 
   final String title = "FirstAnimatePage";
 

@@ -19,7 +19,7 @@ class NewRouter extends StatelessWidget {
 }
 
 class TapBoxA extends StatefulWidget {
-   TapBoxA({Key key}) : super(key: key);
+   TapBoxA({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => new _TapBoxAState();

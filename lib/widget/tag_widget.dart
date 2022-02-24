@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SimpleTagWidget extends StatelessWidget {
   const SimpleTagWidget(
     this.content, {
-    Key key,
+    Key? key,
     this.child,
     this.padding = const EdgeInsets.fromLTRB(15.0, 6, 15.0, 6),
     this.color = Colors.black,
@@ -20,7 +20,7 @@ class SimpleTagWidget extends StatelessWidget {
   final Color borderColor;
   final double fontSize;
 
-  final Widget child;
+  final Widget? child;
   final String content;
   final EdgeInsetsGeometry padding;
 

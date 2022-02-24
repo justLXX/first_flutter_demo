@@ -4,14 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SnowAnimateWidget extends StatefulWidget {
-  const SnowAnimateWidget({Key key}) : super(key: key);
+  const SnowAnimateWidget({Key? key}) : super(key: key);
 
   @override
   _SnowWidgetState createState() => _SnowWidgetState();
 }
 
 class _SnowWidgetState extends State<SnowAnimateWidget> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   List<SnowFlake> snowFlakes = List.generate(100, (index) => SnowFlake());
 
@@ -32,7 +32,7 @@ class _SnowWidgetState extends State<SnowAnimateWidget> with SingleTickerProvide
     return Container(
       constraints: BoxConstraints.expand(),
       child: AnimatedBuilder(
-        builder: (BuildContext context, Widget child) {
+        builder: (BuildContext context, Widget? child) {
           snowFlakes.forEach((snow) => snow.fall());
           return CustomPaint(
             painter: SnowPainter(snowFlakes),

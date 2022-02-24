@@ -6,7 +6,7 @@ import 'dart:math';
 class FourthTweenAnimation extends StatefulWidget {
   final String title = "Second";
 
-  const FourthTweenAnimation({Key key}) : super(key: key);
+  const FourthTweenAnimation({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
@@ -30,7 +30,7 @@ class _AnimatedState extends State<FourthTweenAnimation> {
         child: TweenAnimationBuilder(
           duration: Duration(seconds: 1),
           tween: Tween(begin: 0.00, end: end),
-          builder: (BuildContext context, value, Widget child) {
+          builder: (BuildContext context, dynamic value, Widget? child) {
             return Opacity(
               opacity: value,
               child: AnimatedContainer(

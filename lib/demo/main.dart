@@ -2,6 +2,7 @@ import 'package:first_flutter_demo/animate/widget/WaveWidget.dart';
 import 'package:first_flutter_demo/demo/snow.dart';
 import 'package:first_flutter_demo/demo/transform_demo.dart';
 import 'package:first_flutter_demo/demo/tween_animation_builder_demo.dart';
+import 'package:first_flutter_demo/demo/widget_test/gridview_test/gridview_add_animate_test.dart';
 import 'package:flutter/material.dart';
 
 import 'animate_switch.dart';
@@ -37,13 +38,30 @@ Map<String, Widget> simpleRoutes = {
   'CustomPaint': WaveContainer(),
   'SnowAnimateWidget': SnowAnimateWidget(),
   'AnimatedSwitchDemo': AnimatedSwitchDemo(),
+  'GridviewTest': GridviewTest(),
 };
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('动画'),
+      ),
+      body: Wrap(
+        children: FontWeight.values.map((e) => buildText(e)).toList(),
+        // children: [
+        //   buildText(FontWeight.w300),
+        //   buildText(FontWeight.w400),
+        //   buildText(FontWeight.w500),
+        //   buildText(FontWeight.w600),
+        //   buildText(FontWeight.w700),
+        // ],
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('动画'),
@@ -74,6 +92,24 @@ class HomePage extends StatelessWidget {
               ),
             )
             .toList(),
+      ),
+    );
+  }
+
+  Widget buildText(FontWeight weight) {
+    return DefaultTextStyle(
+      style: TextStyle(fontSize: 14, fontWeight: weight,color: Colors.black),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text('$weight'),
+            Text('abfgh'),
+            Text('大小国'),
+            Text('1589'),
+            Text('abfgh大小国1589'),
+          ],
+        ),
       ),
     );
   }

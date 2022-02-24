@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Transition478 extends StatefulWidget {
   final String title = "tweenAnimtion";
 
-  const Transition478({Key key}) : super(key: key);
+  const Transition478({Key? key}) : super(key: key);
 
   @override
   _AnimatedState createState() => _AnimatedState();
@@ -13,7 +13,7 @@ class Transition478 extends StatefulWidget {
 
 class _AnimatedState extends State<Transition478>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _AnimatedState extends State<Transition478>
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return Container(
               width: 300,
               height: 300,
@@ -54,8 +54,8 @@ class _AnimatedState extends State<Transition478>
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Colors.blue[600],
-                    Colors.blue[100],
+                    Colors.blue[600]!,
+                    Colors.blue[100]!,
                   ],
                   stops: _controller.value <= 0.2
                       ? [animation1.value, animation1.value + 0.1]
