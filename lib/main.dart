@@ -1,21 +1,51 @@
+import 'dart:developer';
 
 import 'package:first_flutter_demo/const.dart';
+import 'package:first_flutter_demo/utils/log.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   // DartTest().testFuture();
   runApp(MyApp());
   print('main 结束');
+  printLog('hello');
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final String? title;
 
   MyApp({Key? key, this.title}) : super(key: key) {}
 
-  // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
+
+
+  @override
+  void initState() {
+    WidgetsBinding.instance?.addObserver(this); //添加观察者
+    super.initState();
+    debugLog('initState');
+  }
+
+
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    debugLog('didChangeMetrics');
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this); //销毁观察者
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +55,10 @@ class MyApp extends StatelessWidget {
       ),
 
       //注册路由表
-      routes: {}..addAll(groupRoutes)..addAll(animateRoutes)..addAll(customWidgetRoutes),
+      routes: {}
+        ..addAll(groupRoutes)
+        ..addAll(animateRoutes)
+        ..addAll(customWidgetRoutes),
 
       home: HomePage(),
     );
@@ -39,15 +72,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late var _controller = AnimationController(
-      duration: Duration(seconds: 1),
-      vsync: this,
+    duration: Duration(seconds: 1),
+    vsync: this,
   );
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text('FirstFlutter'),
@@ -82,3 +116,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 }
 
 
+void debugLog(String msg){
+  var height = MediaQueryData.fromWindow(WidgetsBinding.instance!.window).size.height;
+  print('====>>> print ====>>> $msg  height = $height');
+  // log('====>>> print ====>>> $msg');
+}
